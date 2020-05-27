@@ -1,2 +1,2 @@
 language = "ruby"
-run = "play"
+run = "ruby tic-tac-toe.rb"

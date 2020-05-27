@@ -10,7 +10,8 @@ class Game
 	end
 
 	def play
-		loop do
+    loop do
+      clear_screen
 			puts "PLAYER #{@current_player+1}".brown.bold
 			puts "Place your marker #{@player[@current_player].marker}".brown
 			choose_place_marker()
@@ -39,7 +40,8 @@ class Game
 		puts "___________________________"
 		puts "player 1 - player 2"
 		puts "   [#{@player[0].round_won}]       [#{@player[1].round_won}]".bold.blue
-		puts "***************************\n\n"
+    puts "***************************\n\n"
+    sleep(2)
 	end
 
 	def free_space?
@@ -62,16 +64,20 @@ class Game
 		loop do
 			print_board()
 			print 'Choose an available position : '.cyan
-			position = gets.to_i
+			position = STDIN.getch.to_i
 			puts "\n\n"
 			
 			if !position.between?(1,9)
-				puts 'Wrong input, try again'.red
+        puts 'Wrong input, try again'.red
+        sleep(1)
+        play
 			elsif @board[position].nil?
 				@board[position] = @player[@current_player].marker
 				return
 			else
-				puts 'Choose an AVAILABLE number'.red
+        puts 'Choose an AVAILABLE number'.red
+        sleep(1)
+        play
 			end
 		end
 	end
